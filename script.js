@@ -1,21 +1,22 @@
 const formulario = document.getElementById('miFormulario');
 
 formulario.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Evita que la página se recargue
+    e.preventDefault(); 
 
     const btn = document.getElementById('btnEnviar');
     const textoOriginal = btn.innerText;
     
-    // Feedback visual para el usuario
     btn.innerText = 'Guardando en Excel...';
     btn.disabled = true;
 
-    // Recogemos los datos del formulario
+    // 1. Recogemos los datos
     const formData = new FormData(formulario);
     const data = Object.fromEntries(formData);
 
+    // 2. FORZAMOS LA CÉDULA (Asegúrate que en Excel diga "Cedula")
+    data['Cedula'] = document.getElementById('cedula').value;
+
     try {
-        // Enviamos los datos a tu API de SheetDB
         const response = await fetch('https://sheetdb.io/api/v1/t3134251z9xjz', {
             method: 'POST',
             headers: {
@@ -26,15 +27,14 @@ formulario.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             alert('¡Excelente! La información se guardó correctamente en el Excel.');
-            formulario.reset(); // Limpia los campos
+            formulario.reset(); 
         } else {
-            alert('Error al guardar. Verifica que los nombres de las columnas en Excel coincidan.');
+            alert('Error al guardar. Revisa que los nombres en el Excel coincidan.');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Hubo un problema de conexión. Inténtalo de nuevo.');
+        alert('Hubo un problema de conexión.');
     } finally {
-        // Restauramos el botón
         btn.innerText = textoOriginal;
         btn.disabled = false;
     }
