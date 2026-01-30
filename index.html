@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Información</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Formulario de Registro</h2>
+        <p>Por favor, complete los siguientes datos:</p>
+
+        <form action="https://formsubmit.co/halq676@gmail.com" method="POST" id="miFormulario">
+            
+            <div class="input-group">
+                <label for="nombre">Nombres y Apellidos</label>
+                <input type="text" id="nombre" name="Nombres_Apellidos" required>
+            </div>
+
+            <div class="input-group">
+                <label for="cedula">Cédula / ID</label>
+                <input type="number" id="cedula" name="Cedula" required>
+            </div>
+
+            <div class="input-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="Direccion" required>
+            </div>
+
+            <div class="input-group">
+                <label for="municipio">Municipio</label>
+                <input type="text" id="municipio" name="Municipio" required>
+            </div>
+
+            <div class="input-group">
+                <label for="dedicacion">¿A qué se dedica actualmente?</label>
+                <input type="text" id="dedicacion" name="Dedicacion" required>
+            </div>
+
+            <div class="input-group">
+                <label for="profesion">Profesión</label>
+                <input type="text" id="profesion" name="Profesion" required>
+            </div>
+
+            <input type="hidden" name="_next" value="https://tupagina.com/gracias.html">
+            <input type="hidden" name="_captcha" value="false">
+
+            <button type="submit" id="btnEnviar">Enviar Información</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
