@@ -8,11 +8,12 @@
 </head>
 <body>
 
+   
     <div class="form-container">
-        <h2>Formulario de Registro</h2>
-        <p>Por favor, complete los siguientes datos:</p>
+        <h2>Registro de Información</h2>
+        <p>Los datos se guardarán automáticamente en el sistema.</p>
 
-        <form action="https://formsubmit.co/halq676@gmail.com" method="POST" id="miFormulario">
+        <form id="miFormulario">
             
             <div class="input-group">
                 <label for="nombre">Nombres y Apellidos</label>
@@ -20,7 +21,7 @@
             </div>
 
             <div class="input-group">
-                <label for="cedula">Cédula / ID</label>
+                <label for="cedula">Cédula</label>
                 <input type="number" id="cedula" name="Cedula" required>
             </div>
 
@@ -35,7 +36,7 @@
             </div>
 
             <div class="input-group">
-                <label for="dedicacion">¿A qué se dedica actualmente?</label>
+                <label for="dedicacion">¿A qué se dedica?</label>
                 <input type="text" id="dedicacion" name="Dedicacion" required>
             </div>
 
@@ -43,9 +44,6 @@
                 <label for="profesion">Profesión</label>
                 <input type="text" id="profesion" name="Profesion" required>
             </div>
-
-            <input type="hidden" name="_next" value="https://tupagina.com/gracias.html">
-            <input type="hidden" name="_captcha" value="false">
 
             <button type="submit" id="btnEnviar">Enviar Información</button>
         </form>
