@@ -36,10 +36,10 @@ formulario.addEventListener('submit', async (e) => {
         });
 
         if (response.ok) {
-            alert('¡Registro exitoso! Ya puedes revisar tu Excel.');
+            alert('¡Registro exitoso! Tu informacion ha sido registrada .');
             formulario.reset(); 
         } else {
-            alert('Error al enviar los datos. Revisa la consola (F12).');
+            alert('Lo sentimos, hubo un error al enviar el formulario. Inténtalo de nuevo.');
         }
     } catch (error) {
         alert('Error de conexión con el servidor.');
