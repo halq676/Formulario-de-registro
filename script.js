@@ -9,22 +9,23 @@ formulario.addEventListener('submit', async (e) => {
     btn.innerText = 'Guardando...';
     btn.disabled = true;
 
-    // Recogemos lo que el usuario escribió
-    const nombre = document.getElementById('nombre').value;
-    const cedula = document.getElementById('cedula').value;
-    const direccion = document.getElementById('direccion').value;
-    const municipio = document.getElementById('municipio').value;
-    const dedicacion = document.getElementById('dedicacion').value;
-    const profesion = document.getElementById('profesion').value;
+    // Extraemos los valores manualmente de cada cuadro del formulario
+    const nombreVal = document.getElementById('nombre').value;
+    const cedulaVal = document.getElementById('cedula').value;
+    const direccionVal = document.getElementById('direccion').value;
+    const municipioVal = document.getElementById('municipio').value;
+    const dedicacionVal = document.getElementById('dedicacion').value;
+    const profesionVal = document.getElementById('profesion').value;
 
-    // CREAMOS EL PAQUETE (Los nombres a la izquierda deben ser IGUALES a tu Excel)
+    // CREAMOS EL PAQUETE EXACTO PARA TU EXCEL
+    // Importante: Los nombres a la izquierda deben ser IDENTICOS a la fila 1 de tu Excel
     const datosParaExcel = {
-        "Nombres_Apellidos": nombre,
-        "Cedula": cedula,   // <-- Con "C" mayúscula como en tu foto
-        "Direccion": direccion,
-        "Municipio": municipio,
-        "Dedicacion": dedicacion,
-        "Profesion": profesion
+        "Nombres_Apellidos": nombreVal,
+        "Cedula": String(cedulaVal), // Lo convertimos a texto para que Excel no lo ignore
+        "Direccion": direccionVal,
+        "Municipio": municipioVal,
+        "Dedicacion": dedicacionVal,
+        "Profesion": profesionVal
     };
 
     try {
@@ -38,10 +39,10 @@ formulario.addEventListener('submit', async (e) => {
             alert('¡Registro exitoso! Ya puedes revisar tu Excel.');
             formulario.reset(); 
         } else {
-            alert('Error en el servidor de Excel.');
+            alert('Error al enviar los datos. Revisa la consola (F12).');
         }
     } catch (error) {
-        alert('Error de conexión.');
+        alert('Error de conexión con el servidor.');
     } finally {
         btn.innerText = textoOriginal;
         btn.disabled = false;
