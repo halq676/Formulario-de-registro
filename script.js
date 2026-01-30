@@ -6,34 +6,42 @@ formulario.addEventListener('submit', async (e) => {
     const btn = document.getElementById('btnEnviar');
     const textoOriginal = btn.innerText;
     
-    btn.innerText = 'Guardando en Excel...';
+    btn.innerText = 'Guardando...';
     btn.disabled = true;
 
-    // 1. Recogemos los datos
-    const formData = new FormData(formulario);
-    const data = Object.fromEntries(formData);
+    // Recogemos lo que el usuario escribió
+    const nombre = document.getElementById('nombre').value;
+    const cedula = document.getElementById('cedula').value;
+    const direccion = document.getElementById('direccion').value;
+    const municipio = document.getElementById('municipio').value;
+    const dedicacion = document.getElementById('dedicacion').value;
+    const profesion = document.getElementById('profesion').value;
 
-    // 2. FORZAMOS LA CÉDULA (Asegúrate que en Excel diga "Cedula")
-    data['Cedula'] = document.getElementById('cedula').value;
+    // CREAMOS EL PAQUETE (Los nombres a la izquierda deben ser IGUALES a tu Excel)
+    const datosParaExcel = {
+        "Nombres_Apellidos": nombre,
+        "Cedula": cedula,   // <-- Con "C" mayúscula como en tu foto
+        "Direccion": direccion,
+        "Municipio": municipio,
+        "Dedicacion": dedicacion,
+        "Profesion": profesion
+    };
 
     try {
         const response = await fetch('https://sheetdb.io/api/v1/t3134251z9xjz', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ data: [data] })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [datosParaExcel] })
         });
 
         if (response.ok) {
-            alert('¡Excelente! La información se guardó correctamente en el Excel.');
+            alert('¡Registro exitoso! Ya puedes revisar tu Excel.');
             formulario.reset(); 
         } else {
-            alert('Error al guardar. Revisa que los nombres en el Excel coincidan.');
+            alert('Error en el servidor de Excel.');
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('Hubo un problema de conexión.');
+        alert('Error de conexión.');
     } finally {
         btn.innerText = textoOriginal;
         btn.disabled = false;
